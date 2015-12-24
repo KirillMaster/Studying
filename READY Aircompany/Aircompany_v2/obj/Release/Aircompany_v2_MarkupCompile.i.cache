@@ -1,0 +1,20 @@
+﻿Aircompany_v2
+
+
+winexe
+C#
+.cs
+C:\READY Aircompany\Aircompany_v2\obj\Release\
+Aircompany_v2
+none
+false
+TRACE
+C:\READY Aircompany\Aircompany_v2\App.xaml
+19-138490209
+4514914388
+97-836747576
+241104616717
+AddWindows\AddFlight.xaml;AddWindows\AddPassenger.xaml;AddWindows\AddPlane.xaml;AddWindows\AddPlaneType.xaml;AddWindows\AddTicket.xaml;MainPages\AdminCoef.xaml;MainPages\Entry.xaml;MainPages\Flights.xaml;MainPages\MainWindow.xaml;MainPages\Passengers.xaml;MainPages\Planes.xaml;MainPages\Tickets.xaml;Resources\Icons.xaml;SearchWindows\SearchFlight.xaml;SearchWindows\SearchPassenger.xaml;SearchWindows\SearchPlane.xaml;SearchWindows\SearchTicket.xaml;SearchWindows\SearchType.xaml;UserControls\ProgressBar.xaml;
+
+False
+

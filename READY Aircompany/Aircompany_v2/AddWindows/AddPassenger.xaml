@@ -1,0 +1,61 @@
+﻿<Controls:MetroWindow x:Class="Airport.AddPassenger"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:admin="clr-namespace:Airport.ViewModel"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+BorderThickness="0" 
+                      GlowBrush="Black"
+                      WindowTransitionsEnabled="False"
+                      WindowStartupLocation="CenterScreen"
+        Title="Новый пассажир" Name="windowAddPassenger" Height="317.173" Width="399.448" ResizeMode="NoResize">
+    <Window.DataContext>
+        <admin:AddPassengerViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Label Content="Номер паспорта:" HorizontalAlignment="Left" Height="31" Margin="15,19,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Фамилия:" HorizontalAlignment="Left" Height="31" Margin="15,50,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Дата рождения:" HorizontalAlignment="Left" Height="31" Margin="15,146,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <TextBox x:Name="passportID" Text="{Binding Path=PassportID, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="7" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckDigits}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="surname" Text="{Binding Path=Surname, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="20" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckText}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Label Content="Имя:" HorizontalAlignment="Left" Height="31" Margin="15,84,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Отчество:" HorizontalAlignment="Left" Height="31" Margin="15,115,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Пол:" HorizontalAlignment="Left" Height="31" Margin="15,177,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <TextBox x:Name="name" Text="{Binding Path=Name, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="20">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckText}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="familyName" Text="{Binding Path=FamilyName, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="20">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckText}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Button x:Name="ButtonOK" Command="{Binding OnClickOK}" CommandParameter="{Binding ElementName=windowAddPassenger}" Content="ОК" HorizontalAlignment="Left" Height="33" Margin="10,231,0,0" VerticalAlignment="Top" Width="167" FontFamily="Segoe UI Light" FontSize="16" />
+        <Button x:Name="ButtonExit" Command="{Binding OnClickExit}" CommandParameter="{Binding ElementName=windowAddPassenger}" Content="ВЫХОД" HorizontalAlignment="Left" Height="33" Margin="203,231,0,0" VerticalAlignment="Top" Width="167" FontFamily="Segoe UI Light" FontSize="16" />
+        <ComboBox x:Name="sex" SelectedIndex="{Binding Path=SelectedSexIndex, Mode=TwoWay}" HorizontalAlignment="Left" Margin="203,185,0,0" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light">
+            <ComboBoxItem>Мужской</ComboBoxItem>
+            <ComboBoxItem>Женский</ComboBoxItem>
+        </ComboBox>
+        <DatePicker x:Name="birthDate" SelectedDate="{Binding BirthDateInBox, Mode=TwoWay}" HorizontalAlignment="Left" Margin="203,149,0,0" VerticalAlignment="Top" Width="153" IsHitTestVisible="True" FontFamily="Segoe UI Light" DisplayDateEnd="2015-12-01" DisplayDateStart="1930-01-01"/>
+        <!--SelectedDate="{Binding Path=BirthDate, Mode=TwoWay}"-->
+    </Grid>
+</Controls:MetroWindow>

@@ -1,0 +1,129 @@
+﻿<Controls:MetroWindow x:Class="Airport.SearchFlight"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+        xmlns:admin="clr-namespace:Airport.ViewModel"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+                      BorderThickness="0" 
+                      GlowBrush="Black"
+                      WindowTransitionsEnabled="False"
+                      WindowStartupLocation="CenterScreen"
+        Title="Поиск рейса" Height="363.284" Name="windowSearchFlight" Width="755.113" ResizeMode="NoResize">
+
+    <Window.DataContext>
+        <admin:SearchFlightViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Label Content="Город отправления:" HorizontalAlignment="Left" Height="31" Margin="15,19,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Город прибытия:" HorizontalAlignment="Left" Height="31" Margin="15,50,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Дата отправления:" HorizontalAlignment="Left" Height="31" Margin="15,81,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Дата прибытия:" HorizontalAlignment="Left" Height="31" Margin="15,112,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <TextBox x:Name="cityDeparture" Text="{Binding Path=CityDeparture, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="20">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckText}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="cityDestination" Text="{Binding Path=CityDestination, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="20">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckText}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Label Content="Аэропорт отправления:" HorizontalAlignment="Left" Height="31" Margin="15,144,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Аэропрот прибытия:" HorizontalAlignment="Left" Height="31" Margin="15,175,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Терминал отправления:" HorizontalAlignment="Left" Height="31" Margin="15,206,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Терминал прибытия:" HorizontalAlignment="Left" Height="31" Margin="15,237,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <TextBox x:Name="airportDeparture" Text="{Binding Path=AirportDeparture, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="20">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckText}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="airportDestination" Text="{Binding Path=AirportDestination, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="20">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckText}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="terminalDeparture" Text="{Binding Path=TerminalDeparture, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="2">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckTextAndDigits}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="terminalDestination" Text="{Binding Path=TerminalDestination, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="203,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="2">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckTextAndDigits}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Label Content="Ворота отправления:" HorizontalAlignment="Left" Height="31" Margin="378,51,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Ворота прибытия:" HorizontalAlignment="Left" Height="31" Margin="378,82,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Время отправления:" HorizontalAlignment="Left" Height="31" Margin="378,113,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Время в пути:" HorizontalAlignment="Left" Height="31" Margin="378,144,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <TextBox x:Name="gateDeparture" Text="{Binding Path=GateDeparture, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="566,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="3" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckTextAndDigits}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="gateDestination" Text="{Binding Path=GateDestination, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="566,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="3" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckTextAndDigits}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="timeDeparture" Text="{Binding Path=TimeDepartureInTextBox, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="566,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="5" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding PutTime}" CommandParameter ="{Binding ElementName =timeDeparture}"/>
+                    <cmd:EventToCommand Command="{Binding CheckDigits}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="timeInWay" Text="{Binding Path=TimeInWayInTextBox, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="566,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="5" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding PutTime}" CommandParameter ="{Binding ElementName =timeInWay}"/>
+                    <cmd:EventToCommand Command="{Binding CheckDigits}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Label Content="Количество миль:" HorizontalAlignment="Left" Height="31" Margin="378,176,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Content="Тип самолета:" HorizontalAlignment="Left" Height="31" Margin="378,207,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <TextBox x:Name="milesCount" Text="{Binding Path=MilesCount, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="566,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="5" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckDigits}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Button x:Name="ButtonSearch" Command="{Binding OnClickSearch}" CommandParameter="{Binding ElementName=windowSearchFlight}" Content="ПОИСК" HorizontalAlignment="Left" Height="33" Margin="131,286,0,0" VerticalAlignment="Top" Width="167" FontFamily="Segoe UI Light" FontSize="16" />
+        <Button x:Name="ButtonExit" Command="{Binding OnClickExit}" CommandParameter="{Binding ElementName=windowSearchFlight}" Content="ВЫХОД" HorizontalAlignment="Left" Height="33" Margin="412,286,0,0" VerticalAlignment="Top" Width="167" FontFamily="Segoe UI Light" FontSize="16" />
+        <ComboBox x:Name="airplaneType" ItemsSource="{Binding currentAirplanesTypes}" SelectedItem="{Binding Path=SelectedAirplanesType, Mode=TwoWay}" HorizontalAlignment="Left" Margin="566,208,0,0" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light"/>
+        <DatePicker x:Name="dateDeparture" SelectedDate="{Binding Path=DateDeparture, Mode=TwoWay}" HorizontalAlignment="Left" Margin="203,78,0,0" VerticalAlignment="Top" Width="153" IsHitTestVisible="True" DisplayDateStart="2016-01-01" FontFamily="Segoe UI Light"/>
+        <DatePicker x:Name="dateDestination" SelectedDate="{Binding Path=DateDestination, Mode=TwoWay}" HorizontalAlignment="Left" Margin="203,112,0,0" VerticalAlignment="Top" Width="153" DisplayDateStart="2016-01-01" FontFamily="Segoe UI Light"/>
+        <Label Content="Номер рейса:" HorizontalAlignment="Left" Height="31" Margin="378,18,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <TextBox x:Name="flightNumber" Text="{Binding Path=FlightNumber, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="566,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light" FontSize="14" MaxLength="10" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding CheckDigits}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Label Content="Самолет:" HorizontalAlignment="Left" Height="31" Margin="378,236,0,0" VerticalAlignment="Top" Width="183" FontFamily="Segoe UI Light" FontSize="14"/>
+        <ComboBox x:Name="airplane" ItemsSource="{Binding currentAirplanesID}" SelectedItem="{Binding Path=SelectedAirplane, Mode=TwoWay}" HorizontalAlignment="Left" Margin="566,237,0,0" VerticalAlignment="Top" Width="153" FontFamily="Segoe UI Light"/>
+
+    </Grid>
+</Controls:MetroWindow>

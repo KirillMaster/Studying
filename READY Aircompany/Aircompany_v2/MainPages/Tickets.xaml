@@ -1,0 +1,90 @@
+﻿<Page x:Class="Airport.Tickets"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+      xmlns:admin="clr-namespace:Airport.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="540" d:DesignWidth="828"
+	Title="Tickets">
+
+    <Page.DataContext>
+        <admin:TicketsViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <admin:DateConverter x:Shared="false" x:Key="dateConverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Teal.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ListView.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34.667"></RowDefinition>
+            <RowDefinition Height="318.667" ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="ButtonDeleteTicket_Copy" Grid.Row="1" Content="поиск" FontFamily="Segoe UI Light" FontSize="16" Margin="43,432,35.667,-154"  Grid.ColumnSpan="2" Grid.Column="1"  />
+
+        <ListView x:Name="listFlights"  FontFamily="{StaticResource HeaderFontFamily}" ItemsSource="{Binding CurrentFlights, Mode=TwoWay}" HorizontalAlignment="Left" Height="463" VerticalAlignment="Top" Width="414" Grid.ColumnSpan="4" Margin="0,0,0,-107" Grid.RowSpan="2">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding OnSelectionChangedInListFlights}" CommandParameter="{Binding ElementName=listFlights, Path=SelectedItems}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False">
+                    <GridViewColumn Width="85" Header="Рейс"  DisplayMemberBinding="{Binding FlightID}"/>
+                    <GridViewColumn Width="85" Header="Самолет"  DisplayMemberBinding="{Binding AirplaneID}"/>
+                    <GridViewColumn Width="120" Header="Отправление" DisplayMemberBinding="{Binding CityDeparture}"/>
+                    <GridViewColumn Width="120" Header="Прибытие" DisplayMemberBinding="{Binding CityDestination}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="listTickets" ItemContainerStyle="{StaticResource ListViewItemStyle}" FontFamily="{StaticResource HeaderFontFamily}" ItemsSource="{Binding CurrentTickets, Mode=TwoWay}" HorizontalAlignment="Left" Height="463" VerticalAlignment="Top" Width="411" Grid.ColumnSpan="4" Margin="58.667,0,0,-107" Grid.Column="3" Grid.RowSpan="2" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding OnSelectionChangedInListTickets}" CommandParameter="{Binding ElementName=listTickets, Path=SelectedItems}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                    <GridViewColumn Width="100" Header="Номер места"  DisplayMemberBinding="{Binding TicketID}"/>
+                    <GridViewColumn Width="100" Header="Паспорт"  DisplayMemberBinding="{Binding PassportID}"/>
+                    <GridViewColumn Width="120" Header="Дата заказа" DisplayMemberBinding="{Binding DateOrder, Converter={StaticResource dateConverter}}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="ButtonDeleteTicket" Command="{Binding OnClickDeleteTicket}" CommandParameter="{Binding ElementName=listTickets, Path=SelectedItems}" IsEnabled="{Binding IsButtonDeleteTicketEnabled}" Grid.Row="1" Content="удалить билет" FontFamily="Segoe UI Light" FontSize="16" Margin="82.333,432,108.333,-154"  Grid.ColumnSpan="3" Grid.Column="2"  />
+        <Menu Height="45" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="#FF707070" BorderThickness="0" Grid.ColumnSpan="2" Margin="39,432,35.667,-157" Grid.Row="1" Grid.Column="1">
+            <MenuItem Header="     поиск" Height="41" Width="161" FontFamily="Courier New" FontSize="16" BorderBrush="#FF707070" BorderThickness="1" Background="#FFDDDDDD" Opacity="0">
+                <MenuItem x:Name="ButtonSearchFlight" Command="{Binding OnClickSearchFlight}" Header="по рейсу" Height="38" Width="220" FontFamily="Segoe UI Light" FontSize="14" HorizontalAlignment="Left" />
+                <MenuItem x:Name="ButtonSearchTicket" Command="{Binding OnClickSearchTicket}" Header="по билетам" Height="38" Width="220" FontFamily="Segoe UI Light" FontSize="14" HorizontalAlignment="Left" />
+            </MenuItem>
+        </Menu>
+        <Button x:Name="ButtonAddTicket" IsEnabled="{Binding IsButtonAddTicketEnabled}" Command="{Binding OnClickAddTicket}" Grid.Row="1" Content="новый билет" FontFamily="Segoe UI Light" FontSize="16" Margin="9.667,432,58.333,-154"  Grid.ColumnSpan="2"  Grid.Column="4"  />
+        <Button x:Name="ButtonBack" Command="{Binding OnClickBack}" Style="{DynamicResource MetroCircleButtonStyle}" Content="" HorizontalAlignment="Left" Height="43" Margin="65,438,0,-161" Grid.Row="1" VerticalAlignment="Top" Width="43" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="/Aircompany_v2;component/Images/refresh (1).png" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+
+
+    </Grid>
+</Page>

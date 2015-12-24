@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F10D47EC-8C9F-48CA-BEDB-F3D4E2C5660D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aircompany_v2</RootNamespace>
+    <AssemblyName>Aircompany_v2</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight">
+      <HintPath>..\packages\Portable.MvvmLightLibs.5.0.2.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras">
+      <HintPath>..\packages\Portable.MvvmLightLibs.5.0.2.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform">
+      <HintPath>..\packages\Portable.MvvmLightLibs.5.0.2.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.1.2.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Mutzl.MvvmLight">
+      <HintPath>..\packages\Mutzl.Mvvm.DependentRelayCommand.0.9.5.0\lib\Mutzl.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Accounts.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AddWindows\AddFlight.xaml.cs">
+      <DependentUpon>AddFlight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWindows\AddPassenger.xaml.cs">
+      <DependentUpon>AddPassenger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWindows\AddPlane.xaml.cs">
+      <DependentUpon>AddPlane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWindows\AddPlaneType.xaml.cs">
+      <DependentUpon>AddPlaneType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWindows\AddTicket.xaml.cs">
+      <DependentUpon>AddTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Airplane.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AirplaneType.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AirplaneTypeCoefficient.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AirportModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AirportModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AirportModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AirportModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AirportModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Check.cs" />
+    <Compile Include="Flight.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Information Structures\EntitiesInfo\AccountInfo.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\AirplaneInfo.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\AirplaneTypeCoefficientInfo.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\AirplaneTypeInfo.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\FlightInfo.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\FlightStatusInfo.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\Info.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\LogicPartsKeeper.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\PassengerInfo.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\PermanentCoefficientInfo.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\SeatInfo.cs" />
+    <Compile Include="Information Structures\EntitiesInfo\TicketInfo.cs" />
+    <Compile Include="Information Structures\IMainLogic.cs" />
+    <Compile Include="Interfaces\IAiportModel.cs" />
+    <Compile Include="Interfaces\ICrudErrorable.cs" />
+    <Compile Include="Information Structures\RequestsInfo\AirplanesIDWithTypeName.cs" />
+    <Compile Include="Information Structures\RequestsInfo\AirplanesWithTypes.cs" />
+    <Compile Include="Logic\AirplaneLogic.cs" />
+    <Compile Include="MainClientLogic\DataChangedEventsRedirector.cs" />
+    <Compile Include="MainClientLogic\ErrorEventsRedirector.cs" />
+    <Compile Include="MainClientLogic\MainLogic.cs" />
+    <Compile Include="MainClientLogic\Searchers\AirplaneSearchContext.cs" />
+    <Compile Include="MainClientLogic\Searchers\FlightSearchContext.cs" />
+    <Compile Include="MainClientLogic\Searchers\PassengerSearchContext.cs" />
+    <Compile Include="MainClientLogic\Searchers\TicketSearchContext.cs" />
+    <Compile Include="Logic\AccountLogic.cs" />
+    <Compile Include="Logic\AirplaneTypeCoefficientsLogic.cs" />
+    <Compile Include="Logic\AirplaneTypeLogic.cs" />
+    <Compile Include="Logic\FlightLogic.cs" />
+    <Compile Include="Logic\Logic.cs" />
+    <Compile Include="Logic\PassengerLogic.cs" />
+    <Compile Include="Logic\PermanentCoefficientLogic.cs" />
+    <Compile Include="Logic\SeatLogic.cs" />
+    <Compile Include="Logic\StatusFlightLogic.cs" />
+    <Compile Include="Logic\TicketLogic.cs" />
+    <Compile Include="MainPages\AdminCoef.xaml.cs">
+      <DependentUpon>AdminCoef.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPages\Entry.xaml.cs">
+      <DependentUpon>Entry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPages\Flights.xaml.cs">
+      <DependentUpon>Flights.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPages\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPages\Passengers.xaml.cs">
+      <DependentUpon>Passengers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPages\Planes.xaml.cs">
+      <DependentUpon>Planes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPages\Tickets.xaml.cs">
+      <DependentUpon>Tickets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Passenger.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PermanentCoefficients.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SearchWindows\SearchFlight.xaml.cs">
+      <DependentUpon>SearchFlight.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchWindows\SearchPassenger.xaml.cs">
+      <DependentUpon>SearchPassenger.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchWindows\SearchPlane.xaml.cs">
+      <DependentUpon>SearchPlane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchWindows\SearchTicket.xaml.cs">
+      <DependentUpon>SearchTicket.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchWindows\SearchType.xaml.cs">
+      <DependentUpon>SearchType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Seat.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StatusFlight.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Table.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ticket.cs">
+      <DependentUpon>AirportModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ProgressBar.xaml.cs">
+      <DependentUpon>ProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\AddWindow\AddFlightViewModel.cs" />
+    <Compile Include="ViewModel\AddWindow\AddPassengerViewModel.cs" />
+    <Compile Include="ViewModel\AddWindow\AddPlaneTypeViewModel.cs" />
+    <Compile Include="ViewModel\AddWindow\AddPlaneViewModel.cs" />
+    <Compile Include="ViewModel\AddWindow\AddTicketViewModel.cs" />
+    <Compile Include="ViewModel\Command.cs" />
+    <Compile Include="ViewModel\DateConverter.cs" />
+    <Compile Include="ViewModel\EntryViewModel.cs" />
+    <Compile Include="ViewModel\MainPages\CoefViewModel.cs" />
+    <Compile Include="ViewModel\MainPages\FlightsViewModel.cs" />
+    <Compile Include="ViewModel\MainPages\MainViewModel.cs" />
+    <Compile Include="ViewModel\MainPages\PlanesViewModel.cs" />
+    <Compile Include="ViewModel\ObservableAirportCollection.cs" />
+    <Compile Include="ViewModel\MainPages\PassengerViewModel.cs" />
+    <Compile Include="ViewModel\SearchWindow\SearchFlightViewModel.cs" />
+    <Compile Include="ViewModel\SearchWindow\SearchPassengerViewModel.cs" />
+    <Compile Include="ViewModel\SearchWindow\SearchPlaneViewModel.cs" />
+    <Compile Include="ViewModel\SearchWindow\SearchTicketViewModel.cs" />
+    <Compile Include="ViewModel\SearchWindow\SearchTypeViewModel.cs" />
+    <Compile Include="ViewModel\MainPages\TicketsViewModel.cs" />
+    <Compile Include="ViewModel\SexConverter.cs" />
+    <Page Include="AddWindows\AddFlight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddWindows\AddPassenger.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddWindows\AddPlane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddWindows\AddPlaneType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddWindows\AddTicket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MainPages\AdminCoef.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPages\Entry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPages\Flights.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPages\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPages\Passengers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPages\Planes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPages\Tickets.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Icons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchWindows\SearchFlight.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchWindows\SearchPassenger.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchWindows\SearchPlane.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchWindows\SearchTicket.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchWindows\SearchType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="AirportModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AirportModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AirportModel.edmx.diagram">
+      <DependentUpon>AirportModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\Entypo.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Airport.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AirportModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AirportModel.edmx</DependentUpon>
+      <LastGenOutput>AirportModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AirportModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AirportModel.edmx</DependentUpon>
+      <LastGenOutput>AirportModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Airport_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Airport.mdf</DependentUpon>
+    </Content>
+    <Resource Include="Images\refresh %281%29.png" />
+    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+    <Resource Include="Images\20130714130935254.jpg" />
+    <Resource Include="Images\desktopwallpapers.org.ua-6150.jpg" />
+    <Resource Include="Images\54030_1273404154_1.jpg" />
+    <Resource Include="Images\images.jpg" />
+    <Resource Include="Images\786851.jpg" />
+    <Resource Include="Images\Backgrounds_On_blue_background_wallpaper_082199_.jpg" />
+    <Resource Include="Images\tekstura-figury-siniy-fon.jpg" />
+    <Resource Include="Images\kraski-tekstura-fon-cveta.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>Клиентский профиль .NET Framework 3.5 с пакетом обновления 1 %28SP1%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

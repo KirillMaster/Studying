@@ -1,0 +1,97 @@
+﻿<Page x:Class="Airport.Flights"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:admin="clr-namespace:Airport.ViewModel"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:cmd="http://www.galasoft.ch/mvvmlight"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+      mc:Ignorable="d" 
+      d:DesignHeight="540" d:DesignWidth="828"
+	Title="Flights">
+
+    <Page.DataContext>
+        <admin:FlightsViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Teal.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.ListView.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34.667"></RowDefinition>
+            <RowDefinition Height="318.667" ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--SelectionChanged="{Binding Path=OnSelectionChangedInListFlights, Mode=TwoWay}"-->
+
+        <ListView x:Name="listFlights" FontFamily="{StaticResource HeaderFontFamily}" ItemsSource="{Binding CurrentFlights, Mode=TwoWay}" SelectedItem="{Binding Path=SelectedItemInListFlights, Mode=TwoWay}" HorizontalAlignment="Left" Height="460" VerticalAlignment="Top" Width="414" Grid.ColumnSpan="4" Margin="0,0,0,-104"  Grid.RowSpan="2" HorizontalContentAlignment="Center"  SelectionMode="Single" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding OnSelectionChangedInListFlights}" CommandParameter="{Binding ElementName=listFlights, Path=SelectedValue}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False">
+                    <GridViewColumn Width="85" Header="Рейс"  DisplayMemberBinding="{Binding FlightID}"/>
+                    <GridViewColumn Width="85" Header="Самолет"  DisplayMemberBinding="{Binding AirplaneID}"/>
+                    <GridViewColumn Width="120" Header="Отправление" DisplayMemberBinding="{Binding CityDeparture}"/>
+                    <GridViewColumn Width="120" Header="Прибытие" DisplayMemberBinding="{Binding CityDestination}"/>
+                </GridView>
+
+            </ListView.View>
+        </ListView>
+
+
+
+        <Button x:Name="ButtonAddFlight" IsEnabled="{Binding IsButtonAddFlightEnabled}" Command="{Binding OnClickAddFlight}" Grid.Row="1" Content="добавить" FontFamily="Segoe UI Light" FontSize="16" Margin="56,433,13.333,-161"  Grid.ColumnSpan="2" Grid.Column="1" Width="168" Height="42"  />
+        <Button x:Name="ButtonDeleteFlight" IsEnabled="{Binding IsButtonDeleteFlightEnabled}" Command="{Binding OnClickDeleteFlight}" CommandParameter="{Binding ElementName=listFlights, Path=SelectedValue}" Grid.Row="1" Content="удалить" FontFamily="Segoe UI Light" FontSize="16" Margin="105.333,436,0,-158"  Grid.ColumnSpan="3" Grid.Column="2" Width="168" Height="42" HorizontalAlignment="Left" />
+        <Button x:Name="ButtonSearchFlight" Command="{Binding OnClickSearchFlight}" Grid.Row="1" Content="поиск" FontFamily="Segoe UI Light" FontSize="16" Margin="36.667,433,32.667,-161"  Grid.ColumnSpan="2" Grid.Column="4"  Width="168" Height="42"  />
+        <Label Grid.ColumnSpan="2" Content="Статус рейса:" Grid.Column="3" HorizontalAlignment="Left" Height="31" Margin="100.667,89,0,0" Grid.Row="1" VerticalAlignment="Top" Width="133" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Grid.ColumnSpan="3" Content="Дата отправления:" Grid.Column="3" HorizontalAlignment="Left" Height="31" Margin="100.667,120,0,0" Grid.Row="1" VerticalAlignment="Top" Width="159" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Grid.ColumnSpan="3" Content="Дата прибытия:" Grid.Column="3" HorizontalAlignment="Left" Height="31" Margin="100.667,151,0,0" Grid.Row="1" VerticalAlignment="Top" Width="159" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Label Grid.ColumnSpan="3" Content="Время отправления:" Grid.Column="3" HorizontalAlignment="Left" Height="34" Margin="100.667,182,0,0" Grid.Row="1" VerticalAlignment="Top" Width="159" FontFamily="Segoe UI Light" FontSize="14"/>
+        <TextBox x:Name="timeDeparture" IsEnabled="{Binding IsTimeDepartureEnabled}" Text="{Binding Path=TimeDepartureInTextBox, Mode=TwoWay}" Grid.ColumnSpan="2" Grid.Column="5" HorizontalAlignment="Left" Height="26" Margin="23,182,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" MaxLength="5" FontFamily="Segoe UI Light">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PreviewTextInput">
+                    <cmd:EventToCommand Command="{Binding ChangeItemText}" PassEventArgsToCommand="True"/>
+                    <cmd:EventToCommand Command="{Binding PutTime}" CommandParameter ="{Binding ElementName=timeDeparture}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Button x:Name="ButtonSaveChangesInStatus" IsEnabled="{Binding IsButtonSaveChangesEnabled}" Command="{Binding OnClickSaveChangesInStatus}" Grid.Row="1" Content="сохранить" FontFamily="Segoe UI Light" FontSize="16" Margin="103.667,249,9.667,33"  Grid.ColumnSpan="2" Grid.Column="4" Style="{DynamicResource SquareButtonStyle}"/>
+        <ComboBox x:Name="status" IsEnabled="{Binding IsStatusComboBoxEnabled}" SelectedIndex="{Binding Status}" Grid.ColumnSpan="2" Grid.Column="5" HorizontalAlignment="Left" Height="26" Margin="23,89,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" FontFamily="Segoe UI Light">
+            <ComboBoxItem>Задержан</ComboBoxItem>
+            <ComboBoxItem>Отправлен</ComboBoxItem>
+            <ComboBoxItem>Завершен</ComboBoxItem>
+            <ComboBoxItem>Отменен</ComboBoxItem>
+            <ComboBoxItem>Не активен</ComboBoxItem>
+        </ComboBox>
+        <DatePicker x:Name="dateDeparture" IsEnabled="{Binding IsDateDepartureEnabled}" SelectedDate="{Binding Path=DateDeparture, Mode=TwoWay}" Grid.ColumnSpan="2" Grid.Column="5" HorizontalAlignment="Left" Height="26" Margin="23,120,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" DisplayDateStart="2016-01-01" FontFamily="Segoe UI Light"/>
+        <DatePicker x:Name="dateDestination" IsEnabled="{Binding IsDateDestinationEnabled}" SelectedDate="{Binding Path=DateDestination, Mode=TwoWay}" Grid.ColumnSpan="2" Grid.Column="5" HorizontalAlignment="Left" Height="26" Margin="23,151,0,0" Grid.Row="1" VerticalAlignment="Top" Width="130" DisplayDateStart="2016-01-01" FontFamily="Segoe UI Light"/>
+        <Button x:Name="ButtonBack" Command="{Binding OnClickBack}" Style="{DynamicResource MetroCircleButtonStyle}" Content="" HorizontalAlignment="Left" Height="43" Margin="65,438,0,-161" Grid.Row="1" VerticalAlignment="Top" Width="43" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="/Aircompany_v2;component/Images/refresh (1).png" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+
+
+
+    </Grid>
+</Page>
